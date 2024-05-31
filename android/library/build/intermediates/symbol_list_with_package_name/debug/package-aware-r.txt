@@ -1,0 +1,3 @@
+software.amazon.location.tracking
+drawable my_location
+string label_stop_service
