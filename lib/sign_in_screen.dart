@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:traking_location_app/success_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -11,6 +12,15 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _userIdentityPoolController = TextEditingController();
   final TextEditingController _trackerNameController = TextEditingController();
   final TextEditingController _mapNameController = TextEditingController();
+  static const channel = MethodChannel('com.nttdata.travelmar.channel');
+
+  Future<void> _startTracking() async {
+    try{
+      channel.invokeMethod('startTracking');
+    } on PlatformException catch(e){
+      print(e.message);
+    }
+  }
 
   @override
   void dispose() {
@@ -67,7 +77,8 @@ class _SignInScreenState extends State<SignInScreen> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                _startTracking();
+                //Navigator.of(context).pop();
               },
               child: const Text('Cancel'),
             ),
