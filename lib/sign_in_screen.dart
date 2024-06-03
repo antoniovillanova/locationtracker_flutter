@@ -77,8 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                _startTracking();
-                //Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               child: const Text('Cancel'),
             ),
@@ -108,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: _showSignInDialog,
+          onPressed: () { _startTracking(); }, //_showSignInDialog,
           child: const Text('Sign In'),
         ),
       ),
